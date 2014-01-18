@@ -1,29 +1,19 @@
 # SerializedNestedAttributes
 
-TODO: Write a gem description
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'serialized_nested_attributes'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install serialized_nested_attributes
+A clean interface to access nested fields under a serilaized attribute
 
 ## Usage
+```ruby
+class Person < ActiveRecord::Base
+  details_accessor :favorite_food, :favorite_musician
+end
 
-TODO: Write usage instructions here
+tom = Person.first
+tom.details # => {:favorite_food => "Sushi", :favorite_musician => "Bob Dylan"}
+```
+Since details accessor is defined, you can also access the nested attributes like follows:
 
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+```ruby
+tom.favorite_food # => "Sushi"
+tom.favorite_musica
+```
