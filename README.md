@@ -16,7 +16,7 @@ tom = Person.first
 tom.details # => {:favorite_food => "Sushi", :favorite_musician => "Bob Dylan"}
 
 tom.favorite_food # => "Sushi"
-tom.favorite_musica
+tom.favorite_musician
 ```
 
 ### Writer
