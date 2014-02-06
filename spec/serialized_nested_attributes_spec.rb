@@ -1,6 +1,18 @@
 require 'spec_helper'
 
 describe SerializedNestedAttributes do
+  context "verify_valid_parent_attribute" do
+    it "raises an error if parent attr is not valid" do
+      expect{
+        Course = Class.new do
+          extend SerializedNestedAttributes
+          details_accessor :instructor
+          def initialize; @another_detail ={}; end
+        end
+      }.to raise_error(SerializedNestedAttributes::ParentAttrNotFound)
+    end
+  end
+
   context "vanilla class" do
     it "can extend accessor for serialized attributes" do
       Person = Class.new do

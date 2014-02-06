@@ -2,9 +2,7 @@ module SerializedNestedAttributes
   class ParentAttrNotFound < StandardError; end
 
   def define_nested_accessor(parent_attr_name, *names)
-    if parent_attr_not_accessible?(parent_attr_name)
-      raise SerializedNestedAttributes::ParentAttrNotFound, "parent attr #{parent_attr_name} is not defined."
-    end
+    verify_valid_parent_attribute(parent_attr_name)
 
     names.each do |name|
       define_method "#{name}" do
@@ -22,9 +20,7 @@ module SerializedNestedAttributes
   end
 
   def define_nested_writer(parent_attr_name, *names)
-    if parent_attr_not_accessible?(parent_attr_name)
-      raise SerializedNestedAttributes::ParentAttrNotFound, "parent attr #{parent_attr_name} is not defined."
-    end
+    verify_valid_parent_attribute(parent_attr_name)
 
     names.each do |name|
       define_method "#{name}=" do |value|
@@ -34,9 +30,7 @@ module SerializedNestedAttributes
   end
 
   def define_nested_reader(parent_attr_name, *names)
-    if parent_attr_not_accessible?(parent_attr_name)
-      raise SerializedNestedAttributes::ParentAttrNotFound, "parent attr #{parent_attr_name} is not defined."
-    end
+    verify_valid_parent_attribute(parent_attr_name)
 
     names.each do |name|
       define_method "#{name}" do
@@ -63,6 +57,12 @@ module SerializedNestedAttributes
   end
 
   private
+  def verify_valid_parent_attribute(parent_attr_name)
+    if parent_attr_not_accessible?(parent_attr_name)
+      raise SerializedNestedAttributes::ParentAttrNotFound, "parent attr #{parent_attr_name} is not defined."
+    end
+  end
+
   def parent_attr_not_accessible?(parent_attr_name)
     if self.ancestors.include?(ActiveRecord::Base)
       !self.attribute_names.include?(parent_attr_name.to_s)

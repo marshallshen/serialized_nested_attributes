@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name          = "serialized_nested_attributes"
   spec.version       = "0.0.1"
   spec.authors       = ["Marshall Shen"]
-  spec.email         = ["mshen@groupon.com"]
+  spec.email         = ["shen.marshall@gmail.com"]
   spec.description   = "A clean interface to access nested fields under a serilaized attribute"
   spec.summary       = "A clean interface to access nested fields under a serilaized attribute"
   spec.homepage      = ""
