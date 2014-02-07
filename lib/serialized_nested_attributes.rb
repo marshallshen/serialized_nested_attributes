@@ -17,6 +17,10 @@ module SerializedNestedAttributes
         !!self.send(parent_attr_name)[name]
       end
     end
+
+    define_method("#{parent_attr_name}_attributes") do
+      names
+    end
   end
 
   def define_nested_writer(parent_attr_name, *names)

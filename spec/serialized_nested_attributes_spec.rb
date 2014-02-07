@@ -1,6 +1,20 @@
 require 'spec_helper'
 
 describe SerializedNestedAttributes do
+  context "show nested attributes" do
+    it "raises an error if the nested attribute is not white listed" do
+      Car = Class.new do
+        extend SerializedNestedAttributes
+        attr_accessor :details
+        details_accessor :engine
+        def initialize; @details = {}; end
+      end
+
+      car = Car.new
+      car.details_attributes.should == [:engine]
+    end
+  end
+
   context "verify_valid_parent_attribute" do
     it "raises an error if parent attr is not valid" do
       expect{
