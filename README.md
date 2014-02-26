@@ -47,6 +47,6 @@ tom.favorite_musician = "Adele" # raise error!
 tom.favorite_fodd # => "Sushi"
 ```
 
-## TODO for next release
+## Next release
 1. Allow users to check what nested attributes are allowed under the parent attribute
 2. Support other serialized attributes such as Array
